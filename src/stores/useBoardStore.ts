@@ -1,12 +1,10 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
 
-const STEP_WIDTH = 32
+const STEP_WIDTH = 16
 const BOARD = {
-  MAX_HEIGHT: 10,
-  MAX_HEIGHT_PX: STEP_WIDTH * 10,
-  MAX_WIDTH: 14,
-  MAX_WIDTH_PX: STEP_WIDTH * 14,
+  MAX_HEIGHT: 20,
+  MAX_WIDTH: 28,
 }
 
 type BoardElement = {
@@ -56,14 +54,14 @@ enum Movement {
   UP,
 }
 
-const initialWinPositions = [{ x: 12, y: 6 }, { x: 11, y: 8 }]
+const initialWinPositions = [{ x: 24, y: 12 }, { x: 22, y: 16 }]
 const initialState = {
-  ballOne: { effect: Effect.NONE, position: { x: 2, y: 1, x_px: `${2 * STEP_WIDTH}px` , y_px: `${1 * STEP_WIDTH}px` }},
-  ballTwo: { effect: Effect.NONE, position: { x: 1, y: 3, x_px: `${1 * STEP_WIDTH}px` , y_px: `${3 * STEP_WIDTH}px` }},
+  ballOne: { effect: Effect.NONE, position: { x: 4, y: 2, x_px: `${4 * STEP_WIDTH}px` , y_px: `${2 * STEP_WIDTH}px` }},
+  ballTwo: { effect: Effect.NONE, position: { x: 2, y: 6, x_px: `${2 * STEP_WIDTH}px` , y_px: `${6 * STEP_WIDTH}px` }},
   winPositions: initialWinPositions,
   pads: [
-    // { effect: Effect.FAST, type: PadType.FAST, position: { x: 3, y: 5, x_px: `${3 * STEP_WIDTH}px` , y_px: `${5 * STEP_WIDTH}px` }},
-    // { effect: Effect.REVERSE, type: PadType.REVERSE, position: { x: 5, y: 8, x_px: `${5 * STEP_WIDTH}px` , y_px: `${8 * STEP_WIDTH}px` }},
+    { effect: Effect.FAST, type: PadType.FAST, position: { x: 6, y: 10, x_px: `${6 * STEP_WIDTH}px` , y_px: `${10 * STEP_WIDTH}px` }},
+    { effect: Effect.REVERSE, type: PadType.REVERSE, position: { x: 10, y: 16, x_px: `${10 * STEP_WIDTH}px` , y_px: `${16 * STEP_WIDTH}px` }},
     { effect: Effect.NONE, type: PadType.WIN, position: { x: initialWinPositions[0].x, y: initialWinPositions[0].y, x_px: `${initialWinPositions[0].x * STEP_WIDTH}px` , y_px: `${initialWinPositions[0].y * STEP_WIDTH}px` }},
     { effect: Effect.NONE, type: PadType.WIN, position: { x: initialWinPositions[1].x, y: initialWinPositions[1].y, x_px: `${initialWinPositions[1].x * STEP_WIDTH}px` , y_px: `${initialWinPositions[1].y * STEP_WIDTH}px` }},
   ],
@@ -91,19 +89,26 @@ export const useBoardStore = defineStore('board', () => {
           position: { x: i, y: j, x_px: `${i * STEP_WIDTH}px` , y_px: `${j * STEP_WIDTH}px` },
         })
   
-        if (i === 0 || i === (width - 1)) {
-          j += 1
+        if (i === 0 || i === (width - 2)) {
+          j += 2
         } else {
-          j = j === (height - 1) ? height : height - 1
+          j = j === (height - 2) ? height : height - 2
         }
       }
   
-      i += 1
+      i += 2
     }
 
     // Others blocks
-    [{ x: 1, y: 2 }, { x: 2, y: 2 }, { x: 3, y: 2 }, { x: 5, y: 2 }, { x: 6, y: 2 }, { x: 4, y: 4 }, { x: 5, y: 4 }, { x: 4, y: 6 },
-      { x: 8, y: 4 }, { x: 11, y: 4 }, { x: 12, y: 4 }, { x: 9, y: 5 }, { x: 10, y: 6 }].forEach((block) => {
+    // [{ x: 1, y: 2 }, { x: 2, y: 2 }, { x: 3, y: 2 }, { x: 5, y: 2 }, { x: 6, y: 2 }, { x: 4, y: 4 }, { x: 5, y: 4 }, { x: 4, y: 6 },
+    //   { x: 8, y: 4 }, { x: 11, y: 4 }, { x: 12, y: 4 }, { x: 9, y: 5 }, { x: 10, y: 6 }].forEach((block) => {
+    //   blocks.push({
+    //     type: BlockType.NORMAL,
+    //     position: { x: block.x, y: block.y, x_px: `${block.x * STEP_WIDTH}px` , y_px: `${block.y * STEP_WIDTH}px` },
+    //   })
+    // })
+
+    [{ x: 10, y: 6 }].forEach((block) => {
       blocks.push({
         type: BlockType.NORMAL,
         position: { x: block.x, y: block.y, x_px: `${block.x * STEP_WIDTH}px` , y_px: `${block.y * STEP_WIDTH}px` },
@@ -241,11 +246,39 @@ export const useBoardStore = defineStore('board', () => {
   }
 
   function hasCollisionWithBlock(nextPosition: Pick<Position, 'x' | 'y'>): boolean {
-    return !!blocks.filter((block) => block.type === BlockType.NORMAL).find((block) => block.position.x === nextPosition.x && block.position.y === nextPosition.y)
+    const nexPositionXStart = nextPosition.x
+    const nexPositionXEnd = nextPosition.x + 2
+    const nexPositionYStart = nextPosition.y
+    const nexPositionYEnd = nextPosition.y + 2
+
+    return !!blocks.filter((block) => block.type === BlockType.NORMAL)
+      .find(({ position }) => {
+        const xStart = position.x
+        const xEnd = position.x + 2
+        const yStart = position.y
+        const yEnd = position.y + 2
+
+        return (
+          ((xStart <= nexPositionXStart && nexPositionXStart < xEnd) || (xStart < nexPositionXEnd && nexPositionXEnd <= xEnd))
+          && ((yStart <= nexPositionYStart && nexPositionYStart < yEnd) || (yStart < nexPositionYEnd && nexPositionYEnd <= yEnd))
+        )
+      })
   }
 
   function hasCollisionWithBall(nextPosition: Pick<Position, 'x' | 'y'>, otherBall: Ball): boolean {
-    return nextPosition.x === otherBall.position.x && nextPosition.y === otherBall.position.y
+    const nexPositionXStart = nextPosition.x
+    const nexPositionXEnd = nextPosition.x + 2
+    const nexPositionYStart = nextPosition.y
+    const nexPositionYEnd = nextPosition.y + 2
+    const otherBallXStart = otherBall.position.x
+    const otherBallXEnd = otherBall.position.x + 2
+    const otherBallYStart = otherBall.position.y
+    const otherBallYEnd = otherBall.position.y + 2
+
+    return (
+      ((otherBallXStart <= nexPositionXStart && nexPositionXStart < otherBallXEnd) || (otherBallXStart < nexPositionXEnd && nexPositionXEnd <= otherBallXEnd))
+      && ((otherBallYStart <= nexPositionYStart && nexPositionYStart < otherBallYEnd) || (otherBallYStart < nexPositionYEnd && nexPositionYEnd <= otherBallYEnd))
+    )
   }
 
   // Public methods
@@ -275,8 +308,8 @@ export const useBoardStore = defineStore('board', () => {
 
   function $reset() {
     levelCompleted.value = false
-    ballOne.value = { effect: Effect.NONE, position: { x: 2, y: 1, x_px: `${2 * STEP_WIDTH}px` , y_px: `${1 * STEP_WIDTH}px` }}
-    ballTwo.value = { effect: Effect.NONE, position: { x: 1, y: 3, x_px: `${1 * STEP_WIDTH}px` , y_px: `${3 * STEP_WIDTH}px` }}
+    ballOne.value = { effect: Effect.NONE, position: { x: 4, y: 2, x_px: `${4 * STEP_WIDTH}px` , y_px: `${2 * STEP_WIDTH}px` }}
+    ballTwo.value = { effect: Effect.NONE, position: { x: 2, y: 6, x_px: `${2 * STEP_WIDTH}px` , y_px: `${6 * STEP_WIDTH}px` }}
   }
 
   return { ballOne, ballTwo, blocks, levelCompleted, moveDown, moveLeft, moveRight, moveUp, pads, $reset }
