@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useBoardStore } from '@/stores/useBoardStore'
-import { computed, watch } from 'vue';
+import { computed } from 'vue'
 
 type BallComponentProps = {
   index: 1 | 2

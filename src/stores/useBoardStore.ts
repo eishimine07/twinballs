@@ -138,26 +138,26 @@ export const useBoardStore = defineStore('board', () => {
         nextPosition.x = ball.position.x
         nextPosition.y = ball.position.y + calculatedStep
 
-        break;
+        break
       case Movement.LEFT:
         nextPosition.x = ball.position.x - calculatedStep
         nextPosition.y = ball.position.y
       
-        break;
+        break
       case Movement.RIGHT:
         nextPosition.x = ball.position.x + calculatedStep
         nextPosition.y = ball.position.y
         
-        break;
+        break
       case Movement.UP:
         nextPosition.x = ball.position.x
         nextPosition.y = ball.position.y - calculatedStep
         
-        break;
+        break
       default:
         nextPosition = ball.position
 
-        break;
+        break
     }
 
     return nextPosition

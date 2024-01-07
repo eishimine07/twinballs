@@ -7,7 +7,7 @@ export const useTimerStore = defineStore('timer', () => {
 
   function start(): void {
     if (!timer) {
-      timer = setInterval(() => seconds.value++, 1_000);
+      timer = setInterval(() => seconds.value++, 1_000)
     }
   }
 

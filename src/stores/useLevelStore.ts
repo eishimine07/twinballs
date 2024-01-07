@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { computed, readonly, ref, shallowRef } from 'vue'
+import { computed, readonly, shallowRef } from 'vue'
 import levelService from '@/services/levelService'
 import type { Level } from '@/types/level'
 

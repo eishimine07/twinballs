@@ -1,6 +1,6 @@
 <script setup lang="ts">
+import BlockComponent from '@/components/BlockComponent.vue'
 import { useBoardStore } from '@/stores/useBoardStore'
-import BlockComponent from './BlockComponent.vue';
 
 const { blocks } = useBoardStore();
 </script>

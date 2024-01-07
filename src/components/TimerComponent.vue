@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, watch } from 'vue'
+import { watch } from 'vue'
 import { formatTime } from '@/helpers/TimeHelper'
 import { useBoardStore } from '@/stores/useBoardStore'
 import { useTimerStore } from '@/stores/useTimerStore'
