@@ -1,13 +1,19 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
+import { useResetLevel } from '@/composables/useResetLevel'
+import { useGlobalLoadingStore } from '@/stores/useGlobalLoadingStore'
 import { useLevelStore } from '@/stores/useLevelStore'
 import type { Level } from '@/types/level'
-import { useResetLevel } from '@/composables/useResetLevel'
 
 const levelStore = useLevelStore()
+const globalLoadingStore = useGlobalLoadingStore()
 const router = useRouter()
 
+// globalLoadingStore.isLoading = true
+globalLoadingStore.isLoading = false
+
 const useGoToLevel = async (level: Level) => {
+  globalLoadingStore.isLoading = true
   await router.replace({ name: 'game', params: { id: level.id }})
   levelStore.setLevel({ id: level.id })
 }

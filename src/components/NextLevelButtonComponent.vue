@@ -1,14 +1,17 @@
 <script setup lang="ts">
+import { useGlobalLoadingStore } from '@/stores/useGlobalLoadingStore'
 import { useLevelStore } from '@/stores/useLevelStore'
 import { useRouter } from 'vue-router'
  
 const levelStore = useLevelStore()
+const globalLoadingStore = useGlobalLoadingStore()
 const router = useRouter()
 
 const goToNextLevel = async () => {
   const nextLevel = levelStore.nextLevel
 
   if (nextLevel) {
+    globalLoadingStore.isLoading = true
     await router.replace({ name: 'game', params: { id: nextLevel.id }})
     levelStore.setLevel(nextLevel)
   }

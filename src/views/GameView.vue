@@ -8,9 +8,13 @@ import { useKeyboard } from '@/composables/useKeyboard'
 import { useRoute } from 'vue-router'
 import { useSetLevel } from '@/composables/useSetLevel'
 import TimerComponent from '@/components/TimerComponent.vue'
+import { useGlobalLoadingStore } from '@/stores/useGlobalLoadingStore'
 
 const route = useRoute()
 const { pads } = useBoardStore()
+const globalLoadingStore = useGlobalLoadingStore()
+
+globalLoadingStore.isLoading = true
 
 useSetLevel(route)
 useKeyboard()

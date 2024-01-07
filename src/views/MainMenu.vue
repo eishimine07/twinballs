@@ -1,9 +1,12 @@
 <script setup lang="ts">
-import { useResetLevel } from '@/composables/useResetLevel'
 import { useRouter } from 'vue-router'
+import { useResetLevel } from '@/composables/useResetLevel'
+import { useGlobalLoadingStore } from '@/stores/useGlobalLoadingStore'
  
-const router = useRouter();
+const globalLoadingStore = useGlobalLoadingStore()
+const router = useRouter()
 const goToSelectLevel = async () => {
+  globalLoadingStore.isLoading = true
   await router.replace({ name: 'levels' })
 }
 

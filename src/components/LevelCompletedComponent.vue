@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { computed } from 'vue'
 import NextLevelButtonComponent from '@/components/NextLevelButtonComponent.vue'
 import MenuButtonComponent from '@/components/MenuButtonComponent.vue'
 import { useBoardStore } from '@/stores/useBoardStore'
