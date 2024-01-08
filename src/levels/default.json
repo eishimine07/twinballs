@@ -245,7 +245,12 @@
       ]
     },
     {
-      "blocks": [],
+      "blocks": [
+        { "type": "NORMAL", "position": { "x": 10, "y": 8 }},
+        { "type": "NORMAL", "position": { "x": 10, "y": 10 }},
+        { "type": "NORMAL", "position": { "x": 10, "y": 12 }},
+        { "type": "NORMAL", "position": { "x": 10, "y": 14 }}
+      ],
       "enabled": true,
       "id": "default_5",
       "index": 5,
