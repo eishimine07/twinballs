@@ -22,5 +22,5 @@ export const useTimerStore = defineStore('timer', () => {
     timer = null
   }
 
-  return { seconds: readonly(seconds), start, stop, $reset }
+  return { $reset, seconds: readonly(seconds), start, stop }
 })

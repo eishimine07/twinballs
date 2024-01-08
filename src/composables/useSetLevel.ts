@@ -17,7 +17,7 @@ export function useSetLevel(route: RouteLocationNormalizedLoaded) {
     const levelId = route.params.id
 
     if (levelId) {
-      levelStore.setLevel({ id: parseInt(levelId.toString()) })
+      levelStore.setLevel({ id: levelId.toString() })
     }
   })
 

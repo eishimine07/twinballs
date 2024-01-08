@@ -1,0 +1,93 @@
+{
+  "levels": [
+    {
+      "blocks": [],
+      "enabled": true,
+      "id": "default_1",
+      "index": 1,
+      "pads": [],
+      "twin_balls": [
+        {
+          "effect": "NONE",
+          "position": {
+            "x": 4,
+            "y": 2
+          }
+        },
+        {
+          "effect": "NONE",
+          "position": {
+            "x": 2,
+            "y": 6
+          }
+        }
+      ],
+      "winning_positions": [
+        {
+          "x": 16,
+          "y": 8
+        },
+        {
+          "x": 14,
+          "y": 12
+        }
+      ]
+    },
+    {
+      "blocks": [
+        {
+          "type": "NORMAL",
+          "position": {
+            "x": 10,
+            "y": 6
+          }
+        }
+      ],
+      "enabled": true,
+      "id": "default_2",
+      "index": 2,
+      "pads": [
+        {
+          "type": "FAST",
+          "position": {
+            "x": 6,
+            "y": 10
+          }
+        },
+        {
+          "type": "REVERSE",
+          "position": {
+            "x": 10,
+            "y": 16
+          }
+        }
+      ],
+      "twin_balls": [
+        {
+          "effect": "NONE",
+          "position": {
+            "x": 4,
+            "y": 2
+          }
+        },
+        {
+          "effect": "NONE",
+          "position": {
+            "x": 2,
+            "y": 6
+          }
+        }
+      ],
+      "winning_positions": [
+        {
+          "x": 24,
+          "y": 12
+        },
+        {
+          "x": 22,
+          "y": 16
+        }
+      ]
+    }
+  ]
+}

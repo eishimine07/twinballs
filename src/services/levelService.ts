@@ -1,47 +1,13 @@
-import type { Level } from '@/types/level'
+import { dataToLevel } from '@/helpers/LevelHelper';
+import type { Level } from '@/types/Level'
+import jsonLevels from '@/levels/default.json' 
 
-type LevelService = {
-  getLevels: () => Level[];
-  getNextLevel: (currentLevel: Level) => Level | null;
-}
-
-export default function levelService(): LevelService {
+export default function levelService() {
   function getLevels(): Level[] {
-    return [
-      {
-        enabled: true,
-        id: 1,
-        index: 1,
-      },
-      {
-        enabled: true,
-        id: 2,
-        index: 2,
-      },
-      {
-        enabled: true,
-        id: 3,
-        index: 3,
-      },
-      {
-        enabled: false,
-        id: 4,
-        index: 4,
-      },
-      {
-        enabled: false,
-        id: 5,
-        index: 5,
-      },
-      {
-        enabled: false,
-        id: 6,
-        index: 6,
-      },
-    ]
-  } 
+    return jsonLevels.levels.map((level) => dataToLevel(level))
+  }
 
-  function getNextLevel(currentLevel: Level): Level | null {
+  function getNextLevel(currentLevel: Pick<Level, 'index'>): Level | null {
     if (!currentLevel.index) {
       return null
     }

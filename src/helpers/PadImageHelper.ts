@@ -1,4 +1,4 @@
-import { PadType } from '@/stores/useBoardStore'
+import { PadType } from '@/types/Pad'
 
 export function getUrlByType(type: PadType): string {
   switch (type) {

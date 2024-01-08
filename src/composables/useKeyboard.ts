@@ -1,5 +1,5 @@
 import { onKeyStroke } from '@vueuse/core'
-import { useBoardStore } from './../stores/useBoardStore'
+import { useBoardStore } from '@/stores/useBoardStore'
 
 export function useKeyboard() {
   const { moveDown, moveLeft, moveRight, moveUp } = useBoardStore()

@@ -1,13 +1,11 @@
 <script setup lang="ts">
 import BlockComponent from '@/components/BlockComponent.vue'
-import { useBoardStore } from '@/stores/useBoardStore'
-
-const { blocks } = useBoardStore();
+import { getBlocksForBoardEdge } from '@/helpers/BoardHelper'
 </script>
 
 <template>
   <div class="relative">
-    <BlockComponent v-for="(block, index) in blocks" v-bind:key="`block-${block.type}--${index}`" :left="block.position.x_px" :top="block.position.y_px" />
+    <BlockComponent v-for="(block, index) in getBlocksForBoardEdge()" v-bind:key="`board__block-${block.type}--${index}`" :left="`${block.position.x}rem`" :top="`${block.position.y}rem`" />
     <slot />
   </div>
 </template>

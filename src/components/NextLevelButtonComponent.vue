@@ -10,7 +10,7 @@ const router = useRouter()
 const goToNextLevel = async () => {
   const nextLevel = levelStore.nextLevel
 
-  if (nextLevel) {
+  if (nextLevel.id) {
     globalLoadingStore.isLoading = true
     await router.replace({ name: 'game', params: { id: nextLevel.id }})
     levelStore.setLevel(nextLevel)
@@ -19,7 +19,7 @@ const goToNextLevel = async () => {
 </script>
 
 <template>
-  <button class="transition-all duration-300 rounded border-white hover:bg-gray-700 text-white font-bold text-center py-4 px-8" @click="goToNextLevel">
+  <button v-if="levelStore.hasNextLevel" class="transition-all duration-300 rounded border-white hover:bg-gray-700 text-white font-bold text-center py-4 px-8" @click="goToNextLevel">
     Next Level
   </button>
 </template>

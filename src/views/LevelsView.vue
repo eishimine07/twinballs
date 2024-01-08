@@ -3,7 +3,7 @@ import { useRouter } from 'vue-router'
 import { useResetLevel } from '@/composables/useResetLevel'
 import { useGlobalLoadingStore } from '@/stores/useGlobalLoadingStore'
 import { useLevelStore } from '@/stores/useLevelStore'
-import type { Level } from '@/types/level'
+import type { Level } from '@/types/Level'
 
 const levelStore = useLevelStore()
 const globalLoadingStore = useGlobalLoadingStore()
@@ -32,3 +32,4 @@ useResetLevel()
     </button>
   </div>
 </template>
+@/types/Level
