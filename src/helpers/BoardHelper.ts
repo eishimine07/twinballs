@@ -1,7 +1,7 @@
 import { BlockType, type Block } from '@/types/Block'
 
 export const BOARD = {
-  HEIGHT: 20,
+  HEIGHT: 24,
   WIDTH: 28,
   ELEMENT: {
     WIDTH: 2

@@ -12,7 +12,7 @@ export default function levelService() {
       return null
     }
 
-    return getLevels().find((level) => (level.index ?? -1) > (currentLevel.index ?? -1)) ?? null
+    return getLevels().find((level) => level.enabled && ((level.index ?? -1) > (currentLevel.index ?? -1))) ?? null
   }
 
   return { getLevels, getNextLevel }

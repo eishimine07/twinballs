@@ -10,26 +10,26 @@
         {
           "effect": "NONE",
           "position": {
-            "x": 4,
-            "y": 2
+            "x": 2,
+            "y": 6
           }
         },
         {
           "effect": "NONE",
           "position": {
             "x": 2,
-            "y": 6
+            "y": 14
           }
         }
       ],
       "winning_positions": [
         {
-          "x": 16,
-          "y": 8
+          "x": 20,
+          "y": 6
         },
         {
-          "x": 14,
-          "y": 12
+          "x": 20,
+          "y": 14
         }
       ]
     },
@@ -38,30 +38,155 @@
         {
           "type": "NORMAL",
           "position": {
+            "x": 2,
+            "y": 4
+          }
+        },
+        {
+          "type": "NORMAL",
+          "position": {
+            "x": 4,
+            "y": 4
+          }
+        },
+        {
+          "type": "NORMAL",
+          "position": {
+            "x": 6,
+            "y": 4
+          }
+        },
+        {
+          "type": "NORMAL",
+          "position": {
             "x": 10,
-            "y": 6
+            "y": 4
+          }
+        },
+        {
+          "type": "NORMAL",
+          "position": {
+            "x": 12,
+            "y": 4
+          }
+        },
+        {
+          "type": "NORMAL",
+          "position": {
+            "x": 16,
+            "y": 4
+          }
+        },
+        {
+          "type": "NORMAL",
+          "position": {
+            "x": 18,
+            "y": 4
+          }
+        },
+        {
+          "type": "NORMAL",
+          "position": {
+            "x": 22,
+            "y": 4
+          }
+        },
+        {
+          "type": "NORMAL",
+          "position": {
+            "x": 8,
+            "y": 8
+          }
+        },
+        {
+          "type": "NORMAL",
+          "position": {
+            "x": 10,
+            "y": 8
+          }
+        },
+        {
+          "type": "NORMAL",
+          "position": {
+            "x": 16,
+            "y": 8
+          }
+        },
+        {
+          "type": "NORMAL",
+          "position": {
+            "x": 22,
+            "y": 8
+          }
+        },
+        {
+          "type": "NORMAL",
+          "position": {
+            "x": 24,
+            "y": 8
+          }
+        },
+        {
+          "type": "NORMAL",
+          "position": {
+            "x": 18,
+            "y": 10
+          }
+        },
+        {
+          "type": "NORMAL",
+          "position": {
+            "x": 4,
+            "y": 12
+          }
+        },
+        {
+          "type": "NORMAL",
+          "position": {
+            "x": 20,
+            "y": 12
+          }
+        },
+        {
+          "type": "NORMAL",
+          "position": {
+            "x": 9,
+            "y": 13
+          }
+        },
+        {
+          "type": "NORMAL",
+          "position": {
+            "x": 4,
+            "y": 14
+          }
+        },
+        {
+          "type": "NORMAL",
+          "position": {
+            "x": 22,
+            "y": 14
+          }
+        },
+        {
+          "type": "NORMAL",
+          "position": {
+            "x": 4,
+            "y": 16
+          }
+        },
+        {
+          "type": "NORMAL",
+          "position": {
+            "x": 16,
+            "y": 16
           }
         }
       ],
       "enabled": true,
       "id": "default_2",
       "index": 2,
-      "pads": [
-        {
-          "type": "FAST",
-          "position": {
-            "x": 6,
-            "y": 10
-          }
-        },
-        {
-          "type": "REVERSE",
-          "position": {
-            "x": 10,
-            "y": 16
-          }
-        }
-      ],
+      "pads": [],
       "twin_balls": [
         {
           "effect": "NONE",
@@ -87,6 +212,58 @@
           "x": 22,
           "y": 16
         }
+      ]
+    },
+    {
+      "blocks": [
+        { "type": "NORMAL", "position": { "x": 6, "y": 4 }},
+        { "type": "NORMAL", "position": { "x": 14, "y": 4 }},
+        { "type": "NORMAL", "position": { "x": 14, "y": 6 }},
+        { "type": "NORMAL", "position": { "x": 4, "y": 8 }},
+        { "type": "NORMAL", "position": { "x": 2, "y": 10 }},
+        { "type": "NORMAL", "position": { "x": 4, "y": 10 }},
+        { "type": "NORMAL", "position": { "x": 10, "y": 10 }},
+        { "type": "NORMAL", "position": { "x": 10, "y": 12 }},
+        { "type": "NORMAL", "position": { "x": 4, "y": 14 }},
+        { "type": "NORMAL", "position": { "x": 2, "y": 16 }},
+        { "type": "NORMAL", "position": { "x": 4, "y": 16 }}
+      ],
+      "enabled": false,
+      "id": "default_3",
+      "index": 3,
+      "pads": [
+        { "type": "FAST", "position": { "x": 8, "y": 18 }},
+        { "type": "REVERSE", "position": { "x": 8, "y": 4} },
+        { "type": "REVERSE", "position": { "x": 8, "y": 8} },
+        { "type": "REVERSE", "position": { "x": 16, "y": 18 }}
+      ],
+      "twin_balls": [
+        { "effect": "NONE", "position": { "x": 2, "y": 8 }},
+        { "effect": "NONE", "position": { "x": 2, "y": 14 }}
+      ],
+      "winning_positions": [
+        { "x": 14, "y": 10 },
+        { "x": 14, "y": 12 }
+      ]
+    },
+    {
+      "blocks": [],
+      "enabled": true,
+      "id": "default_4",
+      "index": 4,
+      "pads": [
+        { "type": "FAST", "position": { "x": 8, "y": 18 }},
+        { "type": "REVERSE", "position": { "x": 8, "y": 2} },
+        { "type": "REVERSE", "position": { "x": 8, "y": 6} },
+        { "type": "REVERSE", "position": { "x": 16, "y": 18 }}
+      ],
+      "twin_balls": [
+        { "effect": "NONE", "position": { "x": 2, "y": 6 }},
+        { "effect": "NONE", "position": { "x": 2, "y": 12 }}
+      ],
+      "winning_positions": [
+        { "x": 14, "y": 8 },
+        { "x": 14, "y": 14 }
       ]
     }
   ]
