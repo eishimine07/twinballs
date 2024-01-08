@@ -32,4 +32,3 @@ useClearLevel()
     </button>
   </div>
 </template>
-@/types/Level@/composables/useCleanLevel
