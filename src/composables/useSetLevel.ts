@@ -1,17 +1,12 @@
-import { useBoardStore } from '@/stores/useBoardStore'
-import { useGlobalLoadingStore } from '@/stores/useGlobalLoadingStore'
 import { useLevelStore } from '@/stores/useLevelStore'
-import { useTimerStore } from '@/stores/useTimerStore'
 import { onBeforeMount, watch } from 'vue'
 import type { RouteLocationNormalizedLoaded } from 'vue-router'
+import { useRestartLevel } from './useRestartLevel'
 
 const TIMEOUT = 1_000
 
 export function useSetLevel(route: RouteLocationNormalizedLoaded) {
   const levelStore = useLevelStore()
-  const boardStore = useBoardStore()
-  const timerStore = useTimerStore()
-  const globalLoadingStore = useGlobalLoadingStore() 
 
   onBeforeMount(() => {
     const levelId = route.params.id
@@ -24,13 +19,7 @@ export function useSetLevel(route: RouteLocationNormalizedLoaded) {
   watch(
     () => levelStore.currentLevel,
     () => {
-      boardStore.$reset()
-      timerStore.$reset()
-
-      setTimeout(() => {
-        globalLoadingStore.isLoading = false
-        timerStore.start()
-      }, TIMEOUT)
+      useRestartLevel()
     },
   )
 }

@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { useRouter } from 'vue-router'
-import { useResetLevel } from '@/composables/useResetLevel'
+import { useClearLevel } from '@/composables/useClearLevel'
 import { useGlobalLoadingStore } from '@/stores/useGlobalLoadingStore'
 import { useLevelStore } from '@/stores/useLevelStore'
 import type { Level } from '@/types/Level'
+import { useRouter } from 'vue-router'
 
 const levelStore = useLevelStore()
 const globalLoadingStore = useGlobalLoadingStore()
@@ -18,7 +18,7 @@ const useGoToLevel = async (level: Level) => {
   levelStore.setLevel({ id: level.id })
 }
 
-useResetLevel()
+useClearLevel()
 </script>
 
 <template>
@@ -32,4 +32,4 @@ useResetLevel()
     </button>
   </div>
 </template>
-@/types/Level
+@/types/Level@/composables/useCleanLevel

@@ -1,6 +1,7 @@
 <script setup lang="ts">
+import LevelsButtonComponent from '@/components/LevelsButtonComponent.vue'
+import MainMenuButtonComponent from '@/components/MainMenuButtonComponent.vue'
 import NextLevelButtonComponent from '@/components/NextLevelButtonComponent.vue'
-import MenuButtonComponent from '@/components/MenuButtonComponent.vue'
 import { useBoardStore } from '@/stores/useBoardStore'
 
 const boardStore = useBoardStore()
@@ -14,8 +15,10 @@ const boardStore = useBoardStore()
     
         <div class="flex flex-col gap-4 justify-center w-full mt-8">
           <NextLevelButtonComponent />
+
+          <LevelsButtonComponent />
     
-          <MenuButtonComponent />
+          <MainMenuButtonComponent />
         </div>
     
         <slot />
