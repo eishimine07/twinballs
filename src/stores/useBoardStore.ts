@@ -100,15 +100,14 @@ export const useBoardStore = defineStore('board', () => {
       return false
     }
 
-    if (!hasCollisionWithBall(nextPositionResult[1], twinBallTwo.value)) {
-      twinBallOne.value.position = nextPositionResult[1]
-      twinBallOne.value.effect = getEffect(nextPositionResult[1], twinBallOne.value.effect)
+    if (hasCollisionBetweenTwinBalls(nextPositionResult)) {
+      return false
     }
 
-    if (!hasCollisionWithBall(nextPositionResult[2], twinBallOne.value)) {
-      twinBallTwo.value.position = nextPositionResult[2]
-      twinBallTwo.value.effect = getEffect(nextPositionResult[2], twinBallTwo.value.effect)
-    }
+    twinBallOne.value.position = nextPositionResult[1]
+    twinBallOne.value.effect = getEffect(nextPositionResult[1], twinBallOne.value.effect)
+    twinBallTwo.value.position = nextPositionResult[2]
+    twinBallTwo.value.effect = getEffect(nextPositionResult[2], twinBallTwo.value.effect)
 
     return true
   }
@@ -199,21 +198,36 @@ export const useBoardStore = defineStore('board', () => {
       })
   }
 
-  function hasCollisionWithBall(nextPosition: Position, otherBall: TwinBall): boolean {
-    const nexPositionXStart = nextPosition.x
-    const nexPositionXEnd = nextPosition.x + BOARD.ELEMENT.WIDTH
-    const nexPositionYStart = nextPosition.y
-    const nexPositionYEnd = nextPosition.y + BOARD.ELEMENT.WIDTH
-    const otherBallXStart = otherBall.position.x
-    const otherBallXEnd = otherBall.position.x + BOARD.ELEMENT.WIDTH
-    const otherBallYStart = otherBall.position.y
-    const otherBallYEnd = otherBall.position.y + BOARD.ELEMENT.WIDTH
+  function hasCollisionBetweenTwinBalls(nextPositions: Position[]): boolean {
+    const nextPositionTwinBallOne = nextPositions[1]
+    const nextPositionTwinBallTwo = nextPositions[2]
+
+    if (!hasCollision(nextPositionTwinBallOne, twinBallTwo.value.position) && !hasCollision(nextPositionTwinBallTwo, nextPositionTwinBallOne)) {
+      return false
+    }
+
+    if (!hasCollision(nextPositionTwinBallTwo, twinBallOne.value.position) && !hasCollision(nextPositionTwinBallOne, nextPositionTwinBallTwo)) {
+      return false
+    }
+
+    return true
+  }
+
+  function hasCollision(position1: Position, position2: Position): boolean {
+    const position1XStart = position1.x
+    const position1XEnd = position1.x + BOARD.ELEMENT.WIDTH
+    const position1YStart = position1.y
+    const position1YEnd = position1.y + BOARD.ELEMENT.WIDTH
+    const position2XStart = position2.x
+    const position2XEnd = position2.x + BOARD.ELEMENT.WIDTH
+    const position2YStart = position2.y
+    const position2YEnd = position2.y + BOARD.ELEMENT.WIDTH
 
     return (
-      ((otherBallXStart <= nexPositionXStart && nexPositionXStart < otherBallXEnd) ||
-        (otherBallXStart < nexPositionXEnd && nexPositionXEnd <= otherBallXEnd)) &&
-      ((otherBallYStart <= nexPositionYStart && nexPositionYStart < otherBallYEnd) ||
-        (otherBallYStart < nexPositionYEnd && nexPositionYEnd <= otherBallYEnd))
+      ((position2XStart <= position1XStart && position1XStart < position2XEnd) ||
+        (position2XStart < position1XEnd && position1XEnd <= position2XEnd)) &&
+      ((position2YStart <= position1YStart && position1YStart < position2YEnd) ||
+        (position2YStart < position1YEnd && position1YEnd <= position2YEnd))
     )
   }
 

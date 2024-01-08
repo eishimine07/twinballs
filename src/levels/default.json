@@ -278,7 +278,7 @@
         { "type": "NORMAL", "position": { "x": 2, "y": 16 } },
         { "type": "NORMAL", "position": { "x": 4, "y": 16 } }
       ],
-      "enabled": false,
+      "enabled": true,
       "id": "default_6",
       "index": 6,
       "pads": [
