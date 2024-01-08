@@ -19,13 +19,16 @@ export function getBlocksForBoardEdge(): Block[] {
     while (j < BOARD.HEIGHT) {
       blocks.push({
         type: BlockType.NORMAL,
-        position: { x: i, y: j },
+        position: { x: i, y: j }
       })
 
-      if (i === 0 || i === (BOARD.WIDTH - BOARD.ELEMENT.WIDTH)) {
+      if (i === 0 || i === BOARD.WIDTH - BOARD.ELEMENT.WIDTH) {
         j += BOARD.ELEMENT.WIDTH
       } else {
-        j = j === (BOARD.HEIGHT - BOARD.ELEMENT.WIDTH) ? BOARD.HEIGHT : BOARD.HEIGHT - BOARD.ELEMENT.WIDTH
+        j =
+          j === BOARD.HEIGHT - BOARD.ELEMENT.WIDTH
+            ? BOARD.HEIGHT
+            : BOARD.HEIGHT - BOARD.ELEMENT.WIDTH
       }
     }
 

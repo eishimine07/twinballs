@@ -18,7 +18,7 @@ const router = createRouter({
       path: '/game/levels/:id',
       name: 'game',
       component: () => import('@/views/GameView.vue')
-    },
+    }
   ]
 })
 

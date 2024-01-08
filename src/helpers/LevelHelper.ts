@@ -7,7 +7,7 @@ function validatePositionType(position: any, isRequired = true): boolean {
   if (isRequired && position === undefined) {
     return false
   }
-  
+
   return typeof position.x === 'number' && typeof position.y === 'number'
 }
 
@@ -15,7 +15,7 @@ export function dataToLevel(data: any): Level {
   if (typeof data.enabled !== 'boolean') {
     throw new Error('"enabled" must be boolean')
   }
-  
+
   if (typeof data.id !== 'string') {
     throw new Error('"id" must be string')
   }
@@ -39,20 +39,32 @@ export function dataToLevel(data: any): Level {
   if (!Array.isArray(data.twin_balls)) {
     throw new Error('"twin_balls" must be array')
   }
-  
+
   if (!Array.isArray(data.winning_positions)) {
     throw new Error('"winning_positions" must be array')
   }
 
-  if (data.blocks.find((block: any) => {
-    return typeof block !== 'object' || !Object.values(BlockType).includes(block.type) || !validatePositionType(block.position)
-  })) {
+  if (
+    data.blocks.find((block: any) => {
+      return (
+        typeof block !== 'object' ||
+        !Object.values(BlockType).includes(block.type) ||
+        !validatePositionType(block.position)
+      )
+    })
+  ) {
     throw new Error('"blocks" must be a array of Block')
   }
 
-  if (data.pads.find((pad: any) => {
-    return typeof pad !== 'object' || !Object.values(PadType).includes(pad.type) || !validatePositionType(pad.position)
-  })) {
+  if (
+    data.pads.find((pad: any) => {
+      return (
+        typeof pad !== 'object' ||
+        !Object.values(PadType).includes(pad.type) ||
+        !validatePositionType(pad.position)
+      )
+    })
+  ) {
     throw new Error('"pads" must be a array of Pad')
   }
 
@@ -60,9 +72,15 @@ export function dataToLevel(data: any): Level {
     throw new Error('"twin_balls" must have length equal to 2')
   }
 
-  if (data.twin_balls.find((twin_ball: any) => {
-    return typeof twin_ball !== 'object' || !Object.values(Effect).includes(twin_ball.effect) || !validatePositionType(twin_ball.position)
-  })) {
+  if (
+    data.twin_balls.find((twin_ball: any) => {
+      return (
+        typeof twin_ball !== 'object' ||
+        !Object.values(Effect).includes(twin_ball.effect) ||
+        !validatePositionType(twin_ball.position)
+      )
+    })
+  ) {
     throw new Error('"twin_balls" must be a array of TwinBall')
   }
 
@@ -70,9 +88,11 @@ export function dataToLevel(data: any): Level {
     throw new Error('"winning_positions" must have length equal to 2')
   }
 
-  if (data.winning_positions.find((winning_position: any) => {
-    return typeof winning_position !== 'object' || !validatePositionType(winning_position)
-  })) {
+  if (
+    data.winning_positions.find((winning_position: any) => {
+      return typeof winning_position !== 'object' || !validatePositionType(winning_position)
+    })
+  ) {
     throw new Error('"winning_positions" must be a array of Position')
   }
 

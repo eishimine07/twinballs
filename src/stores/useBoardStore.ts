@@ -11,24 +11,24 @@ enum Movement {
   DOWN,
   LEFT,
   RIGHT,
-  UP,
+  UP
 }
 
 const STEP = {
   FAST: 2,
   NORMAL: 1,
-  REVERSE: -1,
+  REVERSE: -1
 }
 
 export const useBoardStore = defineStore('board', () => {
   const levelStore = useLevelStore()
   const levelCompleted = ref<boolean>(false)
-  const twinBallOne = ref<TwinBall>({ effect: Effect.NONE, position: { x: 0, y: 0 }})
-  const twinBallTwo = ref<TwinBall>({ effect: Effect.NONE, position: { x: 0, y: 0 }})
+  const twinBallOne = ref<TwinBall>({ effect: Effect.NONE, position: { x: 0, y: 0 } })
+  const twinBallTwo = ref<TwinBall>({ effect: Effect.NONE, position: { x: 0, y: 0 } })
   const blocks = ref<Block[]>([])
   const pads = ref<Pad[]>([])
   const winningPositions = ref<Position[]>([])
-  const boardEdge = getBlocksForBoardEdge() 
+  const boardEdge = getBlocksForBoardEdge()
 
   function calculateStep(effect: Effect): number {
     switch (effect) {
@@ -54,17 +54,17 @@ export const useBoardStore = defineStore('board', () => {
       case Movement.LEFT:
         nextPosition.x = twinBall.position.x - calculatedStep
         nextPosition.y = twinBall.position.y
-      
+
         break
       case Movement.RIGHT:
         nextPosition.x = twinBall.position.x + calculatedStep
         nextPosition.y = twinBall.position.y
-        
+
         break
       case Movement.UP:
         nextPosition.x = twinBall.position.x
         nextPosition.y = twinBall.position.y - calculatedStep
-        
+
         break
       default:
         nextPosition = twinBall.position
@@ -114,16 +114,24 @@ export const useBoardStore = defineStore('board', () => {
   }
 
   function updateLevelConpleted() {
-    if(
-      !!winningPositions.value.find((position) => twinBallOne.value.position.x === position.x && twinBallOne.value.position.y === position.y)
-      && !!winningPositions.value.find((position) => twinBallTwo.value.position.x === position.x && twinBallTwo.value.position.y === position.y)
+    if (
+      !!winningPositions.value.find(
+        (position) =>
+          twinBallOne.value.position.x === position.x && twinBallOne.value.position.y === position.y
+      ) &&
+      !!winningPositions.value.find(
+        (position) =>
+          twinBallTwo.value.position.x === position.x && twinBallTwo.value.position.y === position.y
+      )
     ) {
       levelCompleted.value = true
     }
   }
 
   function getEffect(position: Position, currentEffect: Effect): Effect {
-    const padType = pads.value.find((pad) => pad.position.x === position.x && pad.position.y === position.y)?.type
+    const padType = pads.value.find(
+      (pad) => pad.position.x === position.x && pad.position.y === position.y
+    )?.type
 
     if (padType == null) {
       return currentEffect
@@ -154,16 +162,18 @@ export const useBoardStore = defineStore('board', () => {
     const nexPositionYEnd = nextPosition.y + BOARD.ELEMENT.WIDTH
 
     return !!boardEdge.find(({ position }) => {
-        const xStart = position.x
-        const xEnd = position.x + BOARD.ELEMENT.WIDTH
-        const yStart = position.y
-        const yEnd = position.y + BOARD.ELEMENT.WIDTH
+      const xStart = position.x
+      const xEnd = position.x + BOARD.ELEMENT.WIDTH
+      const yStart = position.y
+      const yEnd = position.y + BOARD.ELEMENT.WIDTH
 
-        return (
-          ((xStart <= nexPositionXStart && nexPositionXStart < xEnd) || (xStart < nexPositionXEnd && nexPositionXEnd <= xEnd))
-          && ((yStart <= nexPositionYStart && nexPositionYStart < yEnd) || (yStart < nexPositionYEnd && nexPositionYEnd <= yEnd))
-        )
-      })
+      return (
+        ((xStart <= nexPositionXStart && nexPositionXStart < xEnd) ||
+          (xStart < nexPositionXEnd && nexPositionXEnd <= xEnd)) &&
+        ((yStart <= nexPositionYStart && nexPositionYStart < yEnd) ||
+          (yStart < nexPositionYEnd && nexPositionYEnd <= yEnd))
+      )
+    })
   }
 
   function hasCollisionWithBlock(nextPosition: Position): boolean {
@@ -172,7 +182,8 @@ export const useBoardStore = defineStore('board', () => {
     const nexPositionYStart = nextPosition.y
     const nexPositionYEnd = nextPosition.y + BOARD.ELEMENT.WIDTH
 
-    return !!blocks.value.filter((block) => block.type === BlockType.NORMAL)
+    return !!blocks.value
+      .filter((block) => block.type === BlockType.NORMAL)
       .find(({ position }) => {
         const xStart = position.x
         const xEnd = position.x + BOARD.ELEMENT.WIDTH
@@ -180,8 +191,10 @@ export const useBoardStore = defineStore('board', () => {
         const yEnd = position.y + BOARD.ELEMENT.WIDTH
 
         return (
-          ((xStart <= nexPositionXStart && nexPositionXStart < xEnd) || (xStart < nexPositionXEnd && nexPositionXEnd <= xEnd))
-          && ((yStart <= nexPositionYStart && nexPositionYStart < yEnd) || (yStart < nexPositionYEnd && nexPositionYEnd <= yEnd))
+          ((xStart <= nexPositionXStart && nexPositionXStart < xEnd) ||
+            (xStart < nexPositionXEnd && nexPositionXEnd <= xEnd)) &&
+          ((yStart <= nexPositionYStart && nexPositionYStart < yEnd) ||
+            (yStart < nexPositionYEnd && nexPositionYEnd <= yEnd))
         )
       })
   }
@@ -197,8 +210,10 @@ export const useBoardStore = defineStore('board', () => {
     const otherBallYEnd = otherBall.position.y + BOARD.ELEMENT.WIDTH
 
     return (
-      ((otherBallXStart <= nexPositionXStart && nexPositionXStart < otherBallXEnd) || (otherBallXStart < nexPositionXEnd && nexPositionXEnd <= otherBallXEnd))
-      && ((otherBallYStart <= nexPositionYStart && nexPositionYStart < otherBallYEnd) || (otherBallYStart < nexPositionYEnd && nexPositionYEnd <= otherBallYEnd))
+      ((otherBallXStart <= nexPositionXStart && nexPositionXStart < otherBallXEnd) ||
+        (otherBallXStart < nexPositionXEnd && nexPositionXEnd <= otherBallXEnd)) &&
+      ((otherBallYStart <= nexPositionYStart && nexPositionYStart < otherBallYEnd) ||
+        (otherBallYStart < nexPositionYEnd && nexPositionYEnd <= otherBallYEnd))
     )
   }
 
@@ -233,20 +248,31 @@ export const useBoardStore = defineStore('board', () => {
     if (initialState !== null) {
       twinBallOne.value = { ...initialState.twin_balls[0] }
       twinBallTwo.value = { ...initialState.twin_balls[1] }
-      blocks.value = [ ...initialState.blocks ]
-      pads.value = [ ...initialState.pads ]
-      winningPositions.value = [ ...initialState.winning_positions ]
+      blocks.value = [...initialState.blocks]
+      pads.value = [...initialState.pads]
+      winningPositions.value = [...initialState.winning_positions]
     } else {
-      twinBallOne.value = { effect: Effect.NONE, position: { x: 0, y: 0 }}
-      twinBallTwo.value = { effect: Effect.NONE, position: { x: 0, y: 0 }}
+      twinBallOne.value = { effect: Effect.NONE, position: { x: 0, y: 0 } }
+      twinBallTwo.value = { effect: Effect.NONE, position: { x: 0, y: 0 } }
       blocks.value = []
       pads.value = []
       winningPositions.value = []
     }
 
     levelCompleted.value = false
-
   }
 
-  return { $reset, twinBallOne, twinBallTwo, blocks, levelCompleted, moveDown, moveLeft, moveRight, moveUp, pads, winningPositions }
+  return {
+    $reset,
+    twinBallOne,
+    twinBallTwo,
+    blocks,
+    levelCompleted,
+    moveDown,
+    moveLeft,
+    moveRight,
+    moveUp,
+    pads,
+    winningPositions
+  }
 })

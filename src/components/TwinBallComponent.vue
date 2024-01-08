@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useBoardStore } from '@/stores/useBoardStore'
-import { Effect } from '@/types/TwinBall';
+import { Effect } from '@/types/TwinBall'
 import { computed } from 'vue'
 
 type TwinBallComponentProps = {
@@ -9,7 +9,7 @@ type TwinBallComponentProps = {
 
 const props = defineProps<TwinBallComponentProps>()
 const boardStore = useBoardStore()
-const state = computed(() => props.index === 1 ? boardStore.twinBallOne : boardStore.twinBallTwo)
+const state = computed(() => (props.index === 1 ? boardStore.twinBallOne : boardStore.twinBallTwo))
 const color = computed(() => {
   switch (state.value.effect) {
     case Effect.FAST:
@@ -23,5 +23,9 @@ const color = computed(() => {
 </script>
 
 <template>
-  <div class="absolute h-8 w-8 rounded-2xl z-20 transition-all duration-300" :class="color" :style="{ left: `${state.position.x}rem`, top: `${state.position.y}rem` }" />
+  <div
+    class="absolute h-8 w-8 rounded-2xl z-20 transition-all duration-300"
+    :class="color"
+    :style="{ left: `${state.position.x}rem`, top: `${state.position.y}rem` }"
+  />
 </template>

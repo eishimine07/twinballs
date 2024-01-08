@@ -5,7 +5,12 @@ import { getBlocksForBoardEdge } from '@/helpers/BoardHelper'
 
 <template>
   <div class="relative">
-    <BlockComponent v-for="(block, index) in getBlocksForBoardEdge()" v-bind:key="`board__block-${block.type}--${index}`" :left="`${block.position.x}rem`" :top="`${block.position.y}rem`" />
+    <BlockComponent
+      v-for="(block, index) in getBlocksForBoardEdge()"
+      v-bind:key="`board__block-${block.type}--${index}`"
+      :left="`${block.position.x}rem`"
+      :top="`${block.position.y}rem`"
+    />
     <slot />
   </div>
 </template>

@@ -20,7 +20,12 @@ const route = useRoute()
 const boardStore = useBoardStore()
 const globalLoadingStore = useGlobalLoadingStore()
 const levelStore = useLevelStore()
-const title = computed(() => `Level - ${levelStore.currentLevel.name ?? levelStore.currentLevel.index ?? levelStore.currentLevel.id}`)
+const title = computed(
+  () =>
+    `Level - ${
+      levelStore.currentLevel.name ?? levelStore.currentLevel.index ?? levelStore.currentLevel.id
+    }`
+)
 
 globalLoadingStore.isLoading = true
 
@@ -36,23 +41,40 @@ useKeyboard()
 
     <BoardComponent class="col-span-9" id="board-component">
       <TwinBallComponent :index="1" />
-  
+
       <TwinBallComponent :index="2" />
 
-      <BlockComponent v-for="(block, index) in boardStore.blocks" v-bind:key="`block-${block.type}--${index}`" :left="`${block.position.x}rem`" :top="`${block.position.y}rem`" />
-  
-      <PadComponent v-for="(pad, index) in boardStore.pads" v-bind:key="`pad-${pad.type}--${index}`" :x="pad.position.x" :y="pad.position.y" :type="pad.type" />
+      <BlockComponent
+        v-for="(block, index) in boardStore.blocks"
+        v-bind:key="`block-${block.type}--${index}`"
+        :left="`${block.position.x}rem`"
+        :top="`${block.position.y}rem`"
+      />
 
-      <PadComponent v-for="(winningPosition, index) in boardStore.winningPositions" v-bind:key="`winningPosition-${winningPosition}--${index}`" :x="winningPosition.x" :y="winningPosition.y" :type="PadType.WIN" />
+      <PadComponent
+        v-for="(pad, index) in boardStore.pads"
+        v-bind:key="`pad-${pad.type}--${index}`"
+        :x="pad.position.x"
+        :y="pad.position.y"
+        :type="pad.type"
+      />
+
+      <PadComponent
+        v-for="(winningPosition, index) in boardStore.winningPositions"
+        v-bind:key="`winningPosition-${winningPosition}--${index}`"
+        :x="winningPosition.x"
+        :y="winningPosition.y"
+        :type="PadType.WIN"
+      />
     </BoardComponent>
-  
+
     <div class="col-span-3">
       <TimerComponent class="w-full rounded border" />
 
       <div class="w-full flex flex-col mt-8 rounded border">
         <RestartLevelButtonComponent />
 
-        <MainMenuButtonComponent   />
+        <MainMenuButtonComponent />
       </div>
     </div>
   </div>

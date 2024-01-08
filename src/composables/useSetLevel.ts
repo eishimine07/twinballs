@@ -18,6 +18,6 @@ export function useSetLevel(route: RouteLocationNormalizedLoaded) {
     () => levelStore.currentLevel,
     () => {
       useRestartLevel()
-    },
+    }
   )
 }
