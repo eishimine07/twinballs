@@ -19,7 +19,7 @@ const goToNextLevel = async () => {
 </script>
 
 <template>
-  <button v-if="levelStore.hasNextLevel" class="transition-all duration-300 rounded border-white hover:bg-gray-700 text-white font-bold text-center py-4 px-8" @click="goToNextLevel">
+  <button v-if="levelStore.hasNextLevel" class="transition-colors duration-300 rounded hover:bg-gray-700 font-bold text-center py-4 px-8" @click="goToNextLevel">
     Next Level
   </button>
 </template>

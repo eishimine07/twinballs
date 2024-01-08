@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import TwinBallComponent from '@/components/TwinBallComponent.vue'
+import MainMenuButtonComponent from '@/components/MainMenuButtonComponent.vue'
 import BoardComponent from '@/components/BoardComponent.vue'
 import LevelCompletedComponent from '@/components/LevelCompletedComponent.vue'
 import PadComponent from '@/components/PadComponent.vue'
 import { useBoardStore } from '@/stores/useBoardStore'
 import { useKeyboard } from '@/composables/useKeyboard'
+import RestartLevelButtonComponent from '@/components/RestartLevelButtonComponent.vue'
 import { useRoute } from 'vue-router'
 import { useSetLevel } from '@/composables/useSetLevel'
 import TimerComponent from '@/components/TimerComponent.vue'
@@ -44,7 +46,15 @@ useKeyboard()
       <PadComponent v-for="(winningPosition, index) in boardStore.winningPositions" v-bind:key="`winningPosition-${winningPosition}--${index}`" :x="winningPosition.x" :y="winningPosition.y" :type="PadType.WIN" />
     </BoardComponent>
   
-    <TimerComponent class="col-span-3" />
+    <div class="col-span-3">
+      <TimerComponent class="w-full rounded border" />
+
+      <div class="w-full flex flex-col mt-8 rounded border">
+        <RestartLevelButtonComponent />
+
+        <MainMenuButtonComponent   />
+      </div>
+    </div>
   </div>
 
   <LevelCompletedComponent />

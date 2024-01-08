@@ -18,7 +18,7 @@ watch(
 </script>
 
 <template>
-  <div class="py-4 px-8 border border-solid border-white bg-black text-center text-lg">
+  <div class="p-8 bg-black text-center text-2xl">
     {{ formatTime(timerStore.seconds) }}
   </div>
 </template>
